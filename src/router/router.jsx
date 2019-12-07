@@ -19,7 +19,6 @@ const appNavigator = createStackNavigator(
         },
     },
     {
-        initialRouteName: 'Search',
         defaultNavigationOptions: {
             headerStyle: {
                 backgroundColor: '#C0C2F5',
