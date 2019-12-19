@@ -6,7 +6,7 @@ import {
     Image,
     TextInput,
     StyleSheet,
-    ScrollView,
+    Keyboard,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Pikachu from '../../../assets/pikachu.gif';
@@ -92,6 +92,7 @@ class Search extends React.Component {
     };
 
     handleSearchPokemon = async () => {
+        Keyboard.dismiss();
         await this.setState({ loading: true });
 
         try {
@@ -99,16 +100,15 @@ class Search extends React.Component {
                 this.state.pokemonText.toLowerCase()
             );
 
-            console.log(response);
-
             await this.setState({
                 data: {
                     numberDex: response.data.id,
                     namePokemon: response.data.forms[0].name,
                     spritePokemon: response.data.sprites.front_default,
-                    typePokemon: response.data.types[0].type.name,
+                    typePokemon: response.data.types,
                     movesPokemon: response.data.moves,
-                    itensPokemon: response.data.held_items,
+                    abilityPokemon: response.data.abilities,
+                    stats: response.data.stats,
                 },
             });
 
